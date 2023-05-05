@@ -13,8 +13,11 @@ public class ContaBancariaService {
     public void sacar(Conta conta, Double valorASacar) {
         if(conta.getSaldo()>= valorASacar && valorASacar>0){
             conta.setSaldo(conta.getSaldo()-valorASacar);
+        } else if (valorASacar<=0){
+            throw new IllegalArgumentException("Não é possível sacar valores negativos");
         } else{
-            // throw new RuntimeException();
+            throw new IllegalArgumentException("Saldo Insuficiente");
+
         }
     }
 

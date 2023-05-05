@@ -42,23 +42,16 @@ public class ContaBancariaServiceTest {
 
         saldo = conta.getSaldo();
         valorASacar = 300d;
-        contaBancariaService.sacar(conta,valorASacar);
-        saldo = conta.getSaldo();
-        assertEquals(saldo, conta.getSaldo());
-
+        // contaBancariaService.sacar(conta,valorASacar);
+        // assertEquals(saldo, conta.getSaldo());
+        assertThrows(IllegalArgumentException.class,()-> contaBancariaService.sacar(conta,300d));
+        
         saldo = conta.getSaldo();
         valorASacar = -80d;
-        contaBancariaService.sacar(conta,valorASacar);
-        assertEquals(saldo, conta.getSaldo());
-
-        // saldo = conta.getSaldo();
-        // valorASacar = 500d;
         // contaBancariaService.sacar(conta,valorASacar);
-        // RuntimeException thrown = Assertions.assertThrows(
-        //         RuntimeException.class,
-        //         () -> contaBancariaService.sacar(conta, 500d)
-        // );
-        // assertTrue(thrown.getClass().getSimpleName().equals("RuntimeException"));
+        assertThrows(IllegalArgumentException.class,()-> contaBancariaService.sacar(conta,-80d));
+        // assertEquals(saldo, conta.getSaldo());
+
 
     }
     // transferir: recebe uma conta de destino e um valor, e 
